@@ -1,0 +1,152 @@
+<div class="container">
+    <h2 style="padding-bottom: .5em">Búsqueda por categorías</h2>
+    <!-- (ngSubmit)="enviarApe(formApe)" -->
+    <form (ngSubmit)="enviarApe(formApe)" #formApe="ngForm">
+        <div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Categoría: </label>
+                <div class="col-4">
+                    <!-- <input class="form-control" type="text" placeholder="Apellido" ngModel name="apellido" required #apellido="ngModel"> -->
+                    <select name="categoria" class="custom-select form-control" [ngClass]="{ 'is-invalid': categoria.errors?.required && categoria.touched }" ngModel #categoria="ngModel" required>
+            <option value="nombre">Nombre</option>
+            <option value="apellido1">Apellido1</option>
+            <option value="apellido2">Apellido2</option>
+          </select>
+                    <div *ngIf="categoria.errors?.required" class="div-invalid invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': eleccion.errors?.required && eleccion.touched }" type="text" ngModel name="eleccion" required #eleccion="ngModel">
+                    <div *ngIf="eleccion.errors?.required" class="div-invalid invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+
+            <div class="input-group col-md-4">
+                <button type="submit" class="btn btn-outline-primary" [disabled]="!formApe.valid">
+          Enviar
+        </button>
+            </div>
+
+        </div>
+
+        <!-- Respuesta -->
+        <div class="respuesta" *ngIf="respuesta">
+            <div *ngIf="!masDeUno">
+                <!-- Muestra formulario si sólo hay un resultado -->
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre: </label>
+                    <div class="col-4">
+                        <input class="form-control" type="text" ngModel name="nombre" [(ngModel)]="this.nombre" disabled>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Apellido1: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="apellido1" [(ngModel)]="this.apellido1" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Apellido2: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="apellido2" [(ngModel)]="this.apellido2" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Dirección: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="direccion" [(ngModel)]="this.direccion" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">CP: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="cp" [(ngModel)]="this.cp" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Población: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="poblacion" [(ngModel)]="this.poblacion" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Provincia: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="provincia" [(ngModel)]="this.provincia" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Teléfono: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="telefono" [(ngModel)]="this.telefono" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Email: </label>
+                        <div class="col-4">
+                            <input class="form-control" type="text" ngModel name="email" [(ngModel)]="this.email" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- formulario respuesta -->
+            <div *ngIf="masDeUno">
+                <!-- Muestra tabla si hay más de un resultado -->
+                <table class="table table-hover" style="text-align: center; border: 1px solid silver">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido 1</th>
+                            <th scope="col">Apellido 2</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">CP</th>
+                            <th scope="col">Población</th>
+                            <th scope="col">Provincia</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let empleado of this.listaEmp">
+                            <th scope="row">{{ empleado.ID }}</th>
+                            <td>{{ empleado.NOMBRE }}</td>
+                            <td>{{ empleado.APELLIDO1 }}</td>
+                            <td>{{ empleado.APELLIDO2 }}</td>
+                            <td>{{ empleado.DIRECCION }}</td>
+                            <td>{{ empleado.CP }}</td>
+                            <td>{{ empleado.POBLACION }}</td>
+                            <td>{{ empleado.PROVINCIA }}</td>
+                            <td>{{ empleado.TELEFONO }}</td>
+                            <td>{{ empleado.EMAIL }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- formulario tabla -->
+        </div>
+        <div *ngIf="error" style="color:red">Empleado no válido</div>
+    </form>
+</div>

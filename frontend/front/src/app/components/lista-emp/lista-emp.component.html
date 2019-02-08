@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 *ngIf="!hayEmpleados">No hay empleados</h2>
+    <div *ngIf="hayEmpleados">
+        <h2 style="padding-bottom: .5em">Lista de Empleados</h2>
+        <div class="container" style="padding: 3% 0">
+            <table class="table table-hover table-responsive" style="text-align: center; border: 1px solid silver">
+                <thead style="background-color: #c4c8cc">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido1</th>
+                        <th scope="col">Apellido2</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">CP</th>
+                        <th scope="col">Población</th>
+                        <th scope="col">Provincia</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empleado of this.empleados">
+                        <th scope="row">{{ empleado.ID }}</th>
+                        <td>{{ empleado.NOMBRE }}</td>
+                        <td>{{ empleado.APELLIDO1 }}</td>
+                        <td>{{ empleado.APELLIDO2 }}</td>
+                        <td>{{ empleado.DIRECCION }}</td>
+                        <td>{{ empleado.CP }}</td>
+                        <td>{{ empleado.POBLACION }}</td>
+                        <td>{{ empleado.PROVINCIA }}</td>
+                        <td>{{ empleado.TELEFONO }}</td>
+                        <td>{{ empleado.EMAIL }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
