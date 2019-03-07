@@ -1,9 +1,9 @@
-<div class="container">
+<div class="">
     <h2 *ngIf="!hayEmpleados">No hay empleados</h2>
     <div *ngIf="hayEmpleados">
         <h2 style="padding-bottom: .5em">Lista de Empleados</h2>
-        <div class="container" style="padding: 3% 0">
-            <table class="table table-hover table-responsive" style="text-align: center; border: 1px solid silver">
+        <div style="padding: 3% 0">
+            <table class="table table-hover" style="text-align: center; border: 1px solid silver">
                 <thead style="background-color: #c4c8cc">
                     <tr>
                         <th scope="col">Id</th>
@@ -16,10 +16,13 @@
                         <th scope="col">Provincia</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Email</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empleado of this.empleados">
+                    <tr *ngFor="let empleado of this.empleados ; let i = index">
                         <th scope="row">{{ empleado.ID }}</th>
                         <td>{{ empleado.NOMBRE }}</td>
                         <td>{{ empleado.APELLIDO1 }}</td>
@@ -30,6 +33,37 @@
                         <td>{{ empleado.PROVINCIA }}</td>
                         <td>{{ empleado.TELEFONO }}</td>
                         <td>{{ empleado.EMAIL }}</td>
+
+                        <td><button (click)="verEmpleado(empleado.ID)" class="btn btn-outline-success btn-block">
+                Ver
+              </button></td>
+                        <td><button (click)="modificarEmpleado(empleado.ID)" class="btn btn-outline-primary btn-block">
+                Modificar
+              </button></td>
+
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-block" (click)="openModal(template)">Borrar</button>
+
+                            <ng-template #template>
+                                <div class="modal-header">
+                                    <h4 class="modal-title pull-left">Eliminar empleado</h4>
+                                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Realmente desea eliminar a {{empleado.NOMBRE}} {{empleado.APELLIDO1}} {{empleado.APELLIDO2}}?
+                                    <div class="modal-delete-button">
+                                        <button type="button" class="btn btn-danger" (click)="borrarEmpleado(empleado.ID, i)">Sí</button>
+                                        <button type="button" class="btn btn-primary" (click)="modalRef.hide()">No</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <!-- <app-modal [empleado]='empleado'></app-modal> -->
+                            <!-- <button class="btn btn-outline-danger btn-block" (click)="borrarEmpleadoModal(empleado)">
+                Borrar
+              </button> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>

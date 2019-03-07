@@ -53,6 +53,7 @@ export class TemplateComponent {
     await this.item.getSearchbyId(this.id).subscribe(res => {
 
       if (res.length > 0) {
+        console.log(res);
 
         this.respuesta = true;
         this.error = false;

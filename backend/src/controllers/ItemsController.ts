@@ -15,7 +15,9 @@ import {
   Route,
   SuccessResponse,
   Tags,
-  Request
+  Request,
+  Delete,
+  Put
 } from "tsoa";
 // import  sqlQuery, sqlQueryAll, sqlInsertar from "../sqlHelper"
 // import buscarId from "../sqlHelperNew";
@@ -66,7 +68,7 @@ export class ItemsController extends Controller {
   @SuccessResponse(200)
   @Post("altaEmp")
   public async postEmp(@Request() request: express.Request): Promise<any> {
-    //console.log(request);
+    console.log(request);
     // return { nombre: nombre,
     //          apellido1: apellido1,
     //          apellido2: apellido2,
@@ -100,6 +102,35 @@ export class ItemsController extends Controller {
   @Get("mostrar")
   public async getAll(): Promise<any> {
     return await sqlHelperNew.listaEmp();
+  }
+
+  // DELETE EMP
+  @SuccessResponse(200)
+  @Delete("deleteEmp/{id}")
+  public async deleteEmp(@Path("id") id: string): Promise<any> {
+    return await sqlHelperNew.deleteEmp(id);
+  }
+
+  // UPDATE EMP
+// tslint:disable-next-line: adjacent-overload-signatures
+  @SuccessResponse(200)
+  @Put("updateEmp/{id}")
+  public async updateEmp(@Request() request: express.Request): Promise<any> {
+
+    var empleado = {
+      nombre: request.body.nombre,
+      apellido1: request.body.apellido1,
+      apellido2: request.body.apellido2,
+      direccion: request.body.direccion,
+      cp: request.body.cp,
+      poblacion: request.body.poblacion,
+      provincia: request.body.provincia,
+      telefono: request.body.telefono,
+      email: request.body.email,
+      id: request.params.id
+    };
+
+    return await sqlHelperNew.modEmpleado(empleado);
   }
 
   // @Get("empleados")

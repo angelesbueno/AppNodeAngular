@@ -30,7 +30,7 @@
     "ibm_db": "^2.3.1",
     "log4js": "3.0.4",
     "moment": "2.22.2",
-    "mssql": "^4.3.0",
+    "mssql": "^4.3.2",
     "swagger-ui-express": "3.0.10",
     "tslib": "1.9.3",
     "tsoa": "^2.3.8",

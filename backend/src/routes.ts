@@ -50,15 +50,6 @@ export function RegisterRoutes(app: express.Express) {
   app.post('/api/v1/items/altaEmp',
     function(request: any, response: any, next: any) {
       const args = {
-        nombre: { "default": "", "in": "query", "name": "nombre", "dataType": "string" },
-        apellido1: { "default": "", "in": "query", "name": "apellido1", "dataType": "string" },
-        apellido2: { "default": "", "in": "query", "name": "apellido2", "dataType": "string" },
-        direccion: { "default": "", "in": "query", "name": "direccion", "dataType": "string" },
-        cp: { "default": "", "in": "query", "name": "cp", "dataType": "string" },
-        poblacion: { "default": "", "in": "query", "name": "poblacion", "dataType": "string" },
-        provincia: { "default": "", "in": "query", "name": "provincia", "dataType": "string" },
-        telefono: { "default": "", "in": "query", "name": "telefono", "dataType": "string" },
-        email: { "default": "", "in": "query", "name": "email", "dataType": "string" },
         request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
       };
 
@@ -91,6 +82,44 @@ export function RegisterRoutes(app: express.Express) {
 
 
       const promise = controller.getAll.apply(controller, validatedArgs as any);
+      promiseHandler(controller, promise, response, next);
+    });
+  app.delete('/api/v1/items/deleteEmp/:id',
+    function(request: any, response: any, next: any) {
+      const args = {
+        id: { "in": "path", "name": "id", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller = new ItemsController();
+
+
+      const promise = controller.deleteEmp.apply(controller, validatedArgs as any);
+      promiseHandler(controller, promise, response, next);
+    });
+  app.put('/api/v1/items/updateEmp/:id',
+    function(request: any, response: any, next: any) {
+      const args = {
+        request: { "in": "request", "name": "request", "required": true, "dataType": "object" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller = new ItemsController();
+
+
+      const promise = controller.updateEmp.apply(controller, validatedArgs as any);
       promiseHandler(controller, promise, response, next);
     });
 

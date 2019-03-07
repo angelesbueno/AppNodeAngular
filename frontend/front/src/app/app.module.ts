@@ -12,6 +12,11 @@ import { TemplateApeComponent } from './components/template-ape/template-ape.com
 import { HomeComponent } from './components/home/home.component';
 import { AltaEmpleadoComponent } from './components/alta-empleado/alta-empleado.component';
 import { ListaEmpComponent } from './components/lista-emp/lista-emp.component';
+import { EmpleadoComponent } from './components/empleado/empleado.component';
+import { ModalDialogModule } from 'ngx-modal-dialog';
+import { ModalModule } from 'ngx-bootstrap';
+import { ModalsComponent } from './components/modals/modals.component';
+import { ModificarEmpleadoComponent } from './components/modificar-empleado/modificar-empleado.component';
 
 
 
@@ -24,13 +29,18 @@ import { ListaEmpComponent } from './components/lista-emp/lista-emp.component';
     TemplateApeComponent,
     HomeComponent,
     AltaEmpleadoComponent,
-    ListaEmpComponent
+    ListaEmpComponent,
+    EmpleadoComponent,
+    ModalsComponent,
+    ModificarEmpleadoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalDialogModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]

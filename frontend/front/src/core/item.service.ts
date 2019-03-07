@@ -30,6 +30,7 @@ export class ItemService {
 
   constructor(protected httpClient: HttpClient) {}
 
+  // Buscar por ID
   public getSearchbyId(id): Observable<any> {
     this.id = id;
 
@@ -44,6 +45,7 @@ export class ItemService {
     return this.httpClient.get<any>(ruta2, { headers: headers2 });
   }
 
+  // Búsqueda general
   public getSearchGen(campo, busqueda): Observable<any> {
     let headers = this.defaultHeaders;
     const httpHeaderAccepts: string[] = ["application/json"];
@@ -54,6 +56,7 @@ export class ItemService {
     return this.httpClient.get<any>(ruta, { headers: headers });
   }
 
+  // Alta nuevo empleado
   public postNewEmp(data): Observable<any> {
     let headers3 = this.defaultHeaders;
     const httpHeaderAccepts: string[] = ["application/json"];
@@ -64,6 +67,7 @@ export class ItemService {
     });
   }
 
+  // Obtener todos los empleados
   public getAll(): Observable<any> {
     let headers = this.defaultHeaders;
     const httpHeaderAccepts: string[] = ["application/json"];
@@ -71,5 +75,25 @@ export class ItemService {
     let ruta = this.basePath + '/mostrar';
 
     return this.httpClient.get<any>(ruta, { headers: headers });
+  }
+
+  // Borrar empleado
+  public deleteEmp(id): Observable<any> {
+    let headers = this.defaultHeaders;
+    const httpHeaderAccepts: string[] = ["application/json"];
+    headers = headers.set("Access-Control-Allow-Origin", "*");
+    let ruta = this.basePath + `/deleteEmp/${id}`;
+    return this.httpClient.delete<any>(ruta, { headers: headers });
+  }
+
+  // Modificar empleado
+  public postModEmp(empleado): Observable<any> {
+    let headers = this.defaultHeaders;
+    const httpHeaderAccepts: string[] = ["application/json"];
+    headers = headers.set("Access-Control-Allow-Origin", "*");
+    console.log(empleado);
+    return this.httpClient.put<any>(this.basePath + `/updateEmp/${empleado.id}`, empleado, {
+      headers: headers
+    });
   }
 }

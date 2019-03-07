@@ -1,0 +1,20 @@
+<h1 class="animated fadeIn" style="text-align: left">{{ this.empleado.nombre }} {{ this.empleado.apellido1 }} {{ this.empleado.apellido2 }}</h1>
+<hr/>
+
+<div class="row animated fadeIn fast">
+    <div class="col-md-4" style="text-align: center">
+        <img src="https://image.flaticon.com/icons/svg/1256/1256642.svg" class="img-fluid img-empleado" [alt]="empleado.nombre">
+        <br><br>
+        <a [routerLink]="['/listaEmp']" class="btn btn-outline-primary btn-block">Volver</a>
+    </div>
+
+    <div class="col-md-8" style="padding: 3% 0 0 5%">
+        <p><b>Id:</b> {{ this.empleado.id }}</p>
+        <p><b>Dirección:</b> {{ this.empleado.direccion }}</p>
+        <p><b>CP:</b> {{ this.empleado.cp }}</p>
+        <p><b>Población:</b> {{ this.empleado.poblacion }}</p>
+        <p><b>Provincia:</b> {{ this.empleado.provincia }}</p>
+        <p><b>Teléfono:</b> {{ this.empleado.telefono }}</p>
+        <p><b>Email:</b> {{ this.empleado.email }}</p>
+    </div>
+</div>
