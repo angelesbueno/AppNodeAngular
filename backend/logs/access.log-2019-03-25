@@ -1,0 +1,1 @@
+[2019-03-25T13:16:45.491] [INFO] http - ::1 - - "GET /api/v1/items/mostrar HTTP/1.1" 200 14975 "http://localhost:4200/listaEmp" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"

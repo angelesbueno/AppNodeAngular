@@ -17,6 +17,8 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
 import { ModalModule } from 'ngx-bootstrap';
 import { ModalsComponent } from './components/modals/modals.component';
 import { ModificarEmpleadoComponent } from './components/modificar-empleado/modificar-empleado.component';
+import { KeysPipe } from './pipes/keys.pipe';
+
 
 
 
@@ -32,7 +34,8 @@ import { ModificarEmpleadoComponent } from './components/modificar-empleado/modi
     ListaEmpComponent,
     EmpleadoComponent,
     ModalsComponent,
-    ModificarEmpleadoComponent
+    ModificarEmpleadoComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<!-- Contenedor principal -->
+<div class="container my-4">
+
+  <!-- Formulario -->
+  <form [formGroup]="formUsername" (ngSubmit)="sendForm()" novalidate>
+
+    <!-- Grupo: Usuario -->
+    <div class="row form-group align-items-center">
+
+      <!-- Label: Usuario -->
+      <label for="username" class="col-form-label col-12 col-md-2 align-self-md-start">Usuario</label>
+
+      <!-- Input: Usuario -->
+      <div class="col">
+        <input id="username" formControlName="username" class="form-control" [class.is-invalid]="formUsername.dirty && username.invalid" [class.is-valid]="formUsername.dirty && formUsername.valid" type="text" placeholder="Ej: Angeles">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="username.hasError('pattern')">Sólo se permiten caracteres alfanuméricos y guiones bajo.</ng-container>
+          <ng-container *ngIf="username.hasError('required')">Valor requerido.</ng-container>
+          <ng-container *ngIf="username.hasError('userAlreadyExist')">El usuario ya existe.</ng-container>
+        </div>
+      </div>
+
+      <!-- Spinner de validación en proceso -->
+      <div *ngIf="username.pending" class="col-auto">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Cargando...</span>
+        </div>
+      </div>
+
+    </div>
+    <!--/ Grupo: Usuario -->
+
+    <div class="row form-group justify-content-end">
+      <div class="col-12 col-md-auto offset-md-2">
+        <button class="btn btn-primary btn-block" [disabled]="!formUsername.valid">
+          Enviar
+        </button>
+      </div>
+    </div>
+
+  </form>
+  <!--/ Formulario -->
+
+</div>
+<!--/ Contenedor principal -->

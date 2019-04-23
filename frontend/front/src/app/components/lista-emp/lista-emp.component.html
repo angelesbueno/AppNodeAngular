@@ -22,9 +22,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empleado of this.empleados ; let i = index">
-                        <th scope="row">{{ empleado.ID }}</th>
-                        <td>{{ empleado.NOMBRE }}</td>
+                    <tr *ngFor="let k of this.empleados | keys ; let i = index">
+                        <!-- <th scope="row">{{ empleado.ID }}</th> -->
+                        <!-- <td>{{ empleado.NOMBRE }}</td>
                         <td>{{ empleado.APELLIDO1 }}</td>
                         <td>{{ empleado.APELLIDO2 }}</td>
                         <td>{{ empleado.DIRECCION }}</td>
@@ -32,12 +32,22 @@
                         <td>{{ empleado.POBLACION }}</td>
                         <td>{{ empleado.PROVINCIA }}</td>
                         <td>{{ empleado.TELEFONO }}</td>
-                        <td>{{ empleado.EMAIL }}</td>
+                        <td>{{ empleado.EMAIL }}</td> -->
+                        <th scope="row">{{ this.empleados[k].ID }}</th>
+                        <td>{{ this.empleados[k].NOMBRE }}</td>
+                        <td>{{ this.empleados[k].APELLIDO1 }}</td>
+                        <td>{{ this.empleados[k].APELLIDO2 }}</td>
+                        <td>{{ this.empleados[k].DIRECCION }}</td>
+                        <td>{{ this.empleados[k].CP }}</td>
+                        <td>{{ this.empleados[k].POBLACION }}</td>
+                        <td>{{ this.empleados[k].PROVINCIA }}</td>
+                        <td>{{ this.empleados[k].TELEFONO }}</td>
+                        <td>{{ this.empleados[k].EMAIL }}</td>
 
-                        <td><button (click)="verEmpleado(empleado.ID)" class="btn btn-outline-success btn-block">
+                        <td><button (click)="verEmpleado(this.empleados[k].ID)" class="btn btn-outline-success btn-block">
                 Ver
               </button></td>
-                        <td><button (click)="modificarEmpleado(empleado.ID)" class="btn btn-outline-primary btn-block">
+                        <td><button (click)="modificarEmpleado(this.empleados[k].ID)" class="btn btn-outline-primary btn-block">
                 Modificar
               </button></td>
 
@@ -52,17 +62,13 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    ¿Realmente desea eliminar a {{empleado.NOMBRE}} {{empleado.APELLIDO1}} {{empleado.APELLIDO2}}?
+                                    ¿Realmente desea eliminar a {{this.empleados[k].NOMBRE}} {{this.empleados[k].APELLIDO1}} {{this.empleados[k].APELLIDO2}}?
                                     <div class="modal-delete-button">
-                                        <button type="button" class="btn btn-danger" (click)="borrarEmpleado(empleado.ID, i)">Sí</button>
+                                        <button type="button" class="btn btn-danger" (click)="borrarEmpleado(this.empleados[k].ID, k)">Sí</button>
                                         <button type="button" class="btn btn-primary" (click)="modalRef.hide()">No</button>
                                     </div>
                                 </div>
                             </ng-template>
-                            <!-- <app-modal [empleado]='empleado'></app-modal> -->
-                            <!-- <button class="btn btn-outline-danger btn-block" (click)="borrarEmpleadoModal(empleado)">
-                Borrar
-              </button> -->
                         </td>
                     </tr>
                 </tbody>

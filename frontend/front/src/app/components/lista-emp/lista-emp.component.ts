@@ -26,6 +26,7 @@ export class ListaEmpComponent {
   async mostrarEmp() {
     await this.item.getAll().subscribe(res => {
       if (res.length > 0) {
+
         this.hayEmpleados = true;
         this.empleados = res.slice();
         return this.empleados;
@@ -47,13 +48,19 @@ export class ListaEmpComponent {
     // console.log(this.empleados[i]);
   }
 
-  async borrarEmpleado(id: number, indice) {
-    await this.item.deleteEmp(id).subscribe();
+  async borrarEmpleado(id: number, key) {
+    await this.item.deleteEmp(id).subscribe(res => {
+
+      setTimeout(() => {
+        delete this.empleados[key];
+      }, 1000);
+
+    });
+
 
     this.borrado = true;
     if (this.borrado) {
       this.modalRef.hide();
-      window.location.reload();
     }
   }
 
